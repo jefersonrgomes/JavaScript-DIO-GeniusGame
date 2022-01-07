@@ -6,7 +6,7 @@ export const Container = styled.div`
       height: 100%;
 `;
 
-export const BoxGame = styled.div`
+export const PadButton = styled.div`
       width: var(--game-size);
       height: var(--game-size);
       display: flex;
@@ -41,31 +41,27 @@ export const BoxGame = styled.div`
 export const PadTopLeft = styled.div`
       border: 1px solid green;
       background: var(--clr-normal-green);
-     
       border-top-left-radius: 100%;
 `;
 
 export const PadTopRight = styled.div`
-      border: 1px solid red;
-     
+      border: 1px solid red;   
       border-top-right-radius: 100%;
       background: var(--clr-normal-red);
-
-
 `;
 
 export const PadBottonLeft = styled.div`
       border: 1px solid yellow;
-     
       border-bottom-left-radius: 100%;
       background: var(--clr-normal-yellow);
-
-
 `;
 
 export const PadBottonRight = styled.div`
       border: 1px solid blue;
-      
       border-bottom-right-radius: 100%;      
       background: var(--clr-normal-blue);
+`;
+
+export const Console = styled.div`
+     
 `;
