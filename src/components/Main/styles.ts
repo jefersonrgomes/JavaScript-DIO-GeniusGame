@@ -1,38 +1,71 @@
-import styled, { css } from "styled-components";
-import { RiGroupLine, RiBuilding4Line, RiMapPin2Line, RiMailLine, RiLinksLine } from 'react-icons/ri'
+import styled from "styled-components";
 export const Container = styled.div`
       display: flex;
-      align-items: center;
       background: var(--white);
       padding: 11px 16px;
       height: 100%;
 `;
 
-export const Flex = styled.div`
-          
+export const BoxGame = styled.div`
+      width: var(--game-size);
+      height: var(--game-size);
+      display: flex;
+      flex-wrap: wrap;
+      
+.game__pad{
+      width: calc(var(--game-size)/2);
+      height: calc(var(--game-size)/2);
+}
+
+.game__pad--tl.game__pad--active{
+      background: var(--clr-light-green);
+}
+
+.game__pad--tr.game__pad--active{
+      background: var(--clr-light-red);
+}
+
+.game__pad--bl.game__pad--active{
+      background: var(--clr-light-yellow);
+}
+
+.game__pad--br.game__pad--active{
+      background: var(--clr-light-blue);
+}
+
+.game__pad--btn{
+      cursor: pointer;
+}
 `;
 
-export const Avatar = styled.img`
-          border-radius: 100%;
+export const PadTopLeft = styled.div`
+      border: 1px solid green;
+      background: var(--clr-normal-green);
+     
+      border-top-left-radius: 100%;
+`;
+
+export const PadTopRight = styled.div`
+      border: 1px solid red;
+     
+      border-top-right-radius: 100%;
+      background: var(--clr-normal-red);
+
 
 `;
 
-export const Row = styled.ul`
-        
-        li{
-                color: whitesmoke !important;;
-          }
+export const PadBottonLeft = styled.div`
+      border: 1px solid yellow;
+     
+      border-bottom-left-radius: 100%;
+      background: var(--clr-normal-yellow);
+
+
 `;
 
-export const Column = styled.ul`
-        
+export const PadBottonRight = styled.div`
+      border: 1px solid blue;
+      
+      border-bottom-right-radius: 100%;      
+      background: var(--clr-normal-blue);
 `;
-const iconsCss = css`
-width: 16px;
-height: 16px;
-`;
-
-export const PeapleIcon = styled(RiGroupLine)`${iconsCss}`;
-export const CompanyIcon = styled(RiBuilding4Line)`${iconsCss}`;
-export const LocationIcon = styled(RiMapPin2Line)`${iconsCss}`;
-export const emailIcon = styled(RiMailLine)`${iconsCss}`;
