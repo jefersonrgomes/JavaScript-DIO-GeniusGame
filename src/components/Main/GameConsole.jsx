@@ -16,7 +16,9 @@ const data = {
 export default function GameConsole() {
 
   const [btnstart, setBtnStart] = useState(false);
-  const pressStart = () => { setBtnStart(!btnstart) }
+  const pressStart = () => {
+    setBtnStart(!btnstart)
+  }
 
   const [btnstrict, setBtnStrict] = useState(false);
   const pressStrict = () => { setBtnStrict(!btnstrict) }
@@ -30,13 +32,13 @@ export default function GameConsole() {
     }
     setToogleSwitch(!toggleswitch);
   }
-
+  
   return (
     <div className="game__otions">
       <h1 className="game__title">Genius</h1>
       <Gui>
         <div className="group">
-          <div className={toggleswitch === false ? 'gui__counter' : 'gui__counter gui__counter--on'}>
+          <div className={toggleswitch === false ? 'gui__counter'  : 'gui__counter gui__counter--on'}>
             {btnstart === false ? '--' : data.score} </div>
           <p className="gui__label">Count</p>
         </div>
