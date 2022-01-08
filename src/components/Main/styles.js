@@ -18,6 +18,7 @@ export const Container = styled.div`
      border: var(--game-border);
      border-radius: 25rem;
 }
+
 .game__title{
  font-size: 4rem;
  text-transform: uppercase;
@@ -40,11 +41,14 @@ export const PadButton = styled.div`
 
       
 .game__pad{
-
       width: calc(var(--game-size)/2);
       height: calc(var(--game-size)/2);
+      border: var(--game-border);
 }
 
+.game__pad--tl,.game__pad--tr,.game__pad--bl,.game__pad--br {
+      cursor: pointer;
+}
 .game__pad--tl.game__pad--active{
       background: var(--clr-light-green);
 }
@@ -103,23 +107,24 @@ export const Gui = styled.div`
       align-items:flex-end;
 
       .group{
-      margin-right: 2.2rem;
+            margin-right: 2.2rem;
       }
       .group-large{
-      display: flex;
-      width: 10rem;
-      margin-left: 4.5rem;
+            display: flex;
+            width: 10rem;
+            margin-left: 4.5rem;
       }
       .gui__label{
-      font-family: "Arima Madurai", cursive;
-      font-weight: bold;
-      font-size: 0.75rem;
-      text-align: center;
-      text-transform: uppercase;
+            font-family: "Arima Madurai", cursive;
+            font-weight: bold;
+            font-size: 0.75rem;
+            text-align: center;
+            text-transform: uppercase;
       }
+
       .gui__label--switch{
-     margin: 0;
-     padding-top: 0.75rem;
+            margin: 0;
+            padding-top: 0.75rem;
       }
 
       .gui__btn{
@@ -131,6 +136,7 @@ export const Gui = styled.div`
             border: .4rem solid #444;
             cursor: pointer;
       }
+
       .gui__btn:active{
             transform: translate(0, .3rem);
             box-shadow: none;
@@ -152,7 +158,6 @@ export const Gui = styled.div`
             margin-right: .5rem;
             border-radius: .3rem;
             cursor: pointer;
-
       }
 
       .gui__btn-switch::before{
@@ -166,6 +171,7 @@ export const Gui = styled.div`
             border-radius: .3rem;
             border: .2rem solid #444;
       }
+
       .gui__btn-switch--on::before{
             left: 0;
             transition: .2s ease-in-out;
@@ -183,6 +189,7 @@ export const Gui = styled.div`
             padding-left: .3rem;
             padding-right: .2rem;
       }
+
       .gui__counter--on{    
             color: var(--clr-counter-on);
       }
