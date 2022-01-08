@@ -4,7 +4,7 @@ import * as S from './styles';
 const Footer = () => {
   return (
     <S.Container>
-      <h1>FOOTER TEST VIEW</h1>
+      <h1>Desenvolvido por Jeferson R Gomes</h1>
     </S.Container>
   );
 };
