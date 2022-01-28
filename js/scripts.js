@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const _data = {
 	gameOn: false,
 	timeout: undefined,
@@ -33,7 +32,6 @@ _soundUrls.forEach(sndPath => {
 });
 
 _gui.switch.addEventListener("click", () => {
-	_gui.switch.classList.toggle('gui__btn-switch--on');
 
 });
 
@@ -50,7 +48,7 @@ const padListener = (e) => {
 }
 
 _gui.pads.forEach(pad => {
- 	pad.addEventListener("click", padListener);
+	pad.addEventListener("click", padListener);
 });
 
 const startGame = () => {
@@ -88,5 +86,3 @@ const changePadCursor = (cursorType) => {
 const disablePads = () => {
 
 }
-
-export default _gui;
