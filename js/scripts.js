@@ -66,9 +66,8 @@ _gui.strict.addEventListener("click", () => {
 });
 
 _gui.start.addEventListener("click", () => {
+	if (!_data.gameOn) return;
 	startGame();
-	_data.effects[2].play();
-
 	console.log('clicado start')
 });
 
@@ -83,9 +82,11 @@ _gui.pads.forEach(pad => {
 
 /*** FUN START GAME ***/
 const startGame = () => {
+		_data.effects[2].play();
 	blink("--", () => {
 		newColor();
 	})
+
 	playSequence();
 }
 
