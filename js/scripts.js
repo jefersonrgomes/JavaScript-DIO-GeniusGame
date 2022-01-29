@@ -1,6 +1,18 @@
 /*** *** *** *** ***/
 /*    ATRIBUTES    */
 /*** *** *** *** ***/
+
+
+const _levels = {
+	ease: 750,
+	normal: 550,
+	hard: 400,
+	terminador: 250
+}
+
+let countLevel = 0;
+let selectedLevel = _levels.ease;
+
 const _data = {
 	gameOn: false,
 	timeout: undefined,
@@ -55,22 +67,50 @@ _gui.switch.addEventListener("click", () => {
 	_data.score = 0;
 	_data.gameSequence = [];
 	_data.playerSequence = [];
-		disablePads();
+	disablePads();
 	_gui.led.classList.remove("gui__led--active");
-	_data.effects[2].play();
 
-}); 
+	if (!_data.gameOn) return;
+	else _data.effects[2].play();
+
+});
 
 _gui.strict.addEventListener("click", () => {
-	if(!_data.gameOn) return;	
+	if (!_data.gameOn) return;
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
 	_data.effects[1].play();
 });
 
 _gui.start.addEventListener("click", () => {
 	if (!_data.gameOn) return;
+	
+
+	if (countLevel === 0) {
+		selectedLevel = _levels.ease;
+		alert("level 1");
+		++countLevel
+	}
+	else if (countLevel === 1) {
+		selectedLevel = _levels.normal;
+		alert("level 2");
+		++countLevel
+
+
+	}
+
+	else if (countLevel === 2) {
+		selectedLevel = _levels.hard;
+		alert("level 3");
+		++countLevel
+	}
+	
+	else {
+		countLevel = 0;
+	}
+		
 	startGame();
 	console.log('clicado start')
+
 });
 
 /*** FUN PAD LISTENER ***/
@@ -88,7 +128,7 @@ const startGame = () => {
 		newColor();
 		playSequence()
 	})
-	
+
 }
 
 /*** FUN SET SCORE ***/
@@ -109,27 +149,26 @@ const newColor = () => {
 const playSequence = () => {
 	let counter = 0;
 	let padOn = true;
-	
+
 	_data.playerSequence = [];
 	_data.playerCanPlay = false;
 
-/*	 setInterval: 
-		Executa uma função dada 
-		dentro do tempo apresentado.
-*/
+	/*	 setInterval: 
+			Executa uma função dada 
+			dentro do tempo apresentado.
+	*/
 	const interval = setInterval(() => {
 		//_data.effects[0].play();
 
 		if (padOn) {
 
-			if (counter === _data.gameSequence.length)
-			{
+			if (counter === _data.gameSequence.length) {
 				clearInterval(interval);
 				disablePads();
 				_data.playerCanPlay = true;
 				return;
 			}
-			
+
 			const padId = _data.gameSequence[counter];
 			const pad = _gui.pads[padId];
 
@@ -144,9 +183,8 @@ const playSequence = () => {
 		}
 
 		padOn = !padOn;
-	},750)
+	}, selectedLevel)
 }
-
 
 /*** FUN BLINK DISPLAY ***/
 const blink = (text, callback) => {
