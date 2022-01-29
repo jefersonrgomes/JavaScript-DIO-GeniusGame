@@ -2,7 +2,6 @@ const _data = {
 	gameOn: false,
 	timeout: undefined,
 	sounds: [],
-
 	strict: false,
 	playerCanPlay: false,
 	score: 0,
@@ -12,7 +11,7 @@ const _data = {
 
 const _gui = {
 	counter: document.querySelector(".gui__counter"),
-	switch: document.querySelector(".gui__btn-switch"),
+	switch: document.querySelector(".gui__btn--switch"),
 	led: document.querySelector(".gui__led"),
 	strict: document.querySelector(".gui__btn--strict"),
 	start: document.querySelector(".gui__btn--start"),
@@ -32,15 +31,25 @@ _soundUrls.forEach(sndPath => {
 });
 
 _gui.switch.addEventListener("click", () => {
-
+	_data.gameOn = _gui.switch.classList.toggle("gui__btn--switch--on");
+	_gui.counter.classList.toggle("gui__counter--on");
+	_gui.counter.innerHTML = "--";
+	_data.strict = false;
+	_data.playerCanPlay = false;
+	_data.score = 0;
+	_data.gameSequence = [];
+	_data.playerSequence = [];
+	disablePads();
+	_gui.led.classList.remove("gui__led--active");
 });
 
 _gui.strict.addEventListener("click", () => {
-
+	if(!_data.gameOn) return;	
+	_data.strict = _gui.led.classList.toggle("gui__led--active");
 });
 
 _gui.start.addEventListener("click", () => {
-
+	startGame();
 });
 
 const padListener = (e) => {
@@ -52,7 +61,9 @@ _gui.pads.forEach(pad => {
 });
 
 const startGame = () => {
-
+	blink("--", () => {
+		console.log("Game iniciado com sucesso!");
+	})
 }
 
 const setScore = () => {
@@ -68,7 +79,28 @@ const playSequence = () => {
 }
 
 const blink = (text, callback) => {
+	let counter = 0,
+		on = true;
+	
+	_gui.counter.innerHTML = text;
 
+	const interval = setInterval(() => {
+		if (on)
+		{
+			_gui.counter.classList.remove("gui__counter--on");
+		}
+		else {
+			_gui.counter.classList.add("gui__counter--on");
+			
+			if (++counter === 3) {
+				clearInterval(interval)
+				callback();
+			}
+		}
+
+		on = !on;
+	}, 150);
+	
 }
 
 const waitForPlayerClick = () => {
@@ -84,5 +116,16 @@ const changePadCursor = (cursorType) => {
 }
 
 const disablePads = () => {
+	_gui.pads.forEach(pad => {
+		pad.classList.remove("game__pad--active");
+	})
+	
 
+}
+
+const switchOn = () => {
+	if (_data.gameOn)
+	{
+		
+	 }
 }

@@ -141,7 +141,6 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: 6rem;
-
 }
 
 .game__title {
@@ -165,13 +164,15 @@ body {
 .game__pad {
 	width: calc(var(--game-size) /2);
 	height: calc(var(--game-size) /2);
-	border: var(--game-border);
+	border: var(--game-border);	
 }
 
 .game__pad--tl {
 	background-color: var(--clr-normal-green);
 	border-top-left-radius: 10%;
+	padding: 1.5rem;
 }
+
 
 .game__pad--tl.game__pad--active {
 	background-color: var(--clr-light-green);
