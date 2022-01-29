@@ -1,11 +1,11 @@
 /*** *** *** *** ***/
 /*    ATRIBUTES    */
 /*** *** *** *** ***/
-
 const _data = {
 	gameOn: false,
 	timeout: undefined,
 	sounds: [],
+	effects: [],
 	strict: false,
 	playerCanPlay: false,
 	score: 0,
@@ -23,16 +23,27 @@ const _gui = {
 }
 
 const _soundUrls = [
-	"audio/simonSound1.mp3",
-	"audio/simonSound2.mp3",
-	"audio/simonSound3.mp3",
-	"audio/simonSound4.mp3"
+	"../assets/audios/simonSound1.mp3",
+	"../assets/audios/simonSound2.mp3",
+	"../assets/audios/simonSound3.mp3",
+	"../assets/audios/simonSound4.mp3"
 ];
 
 _soundUrls.forEach(sndPath => {
 	const audio = new Audio(sndPath);
 	_data.sounds.push(audio);
 });
+
+const _effectsUrls = [
+	"../assets/audios/effects/start.wav",
+	"../assets/audios/effects/congratulations.wav",
+	"../assets/audios/effects/nextlevel.wav "
+]
+
+_effectsUrls.forEach(sndPath => {
+	const audio = new Audio(sndPath);
+	_data.effects.push(audio);
+})
 
 _gui.switch.addEventListener("click", () => {
 	_data.gameOn = _gui.switch.classList.toggle("gui__btn--switch--on");
@@ -50,14 +61,15 @@ _gui.switch.addEventListener("click", () => {
 _gui.strict.addEventListener("click", () => {
 	if(!_data.gameOn) return;	
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
+	_data.sounds[2].play();
+
+
 });
-
-
-/*** FUN DIABLE PADS ***/
-
 
 _gui.start.addEventListener("click", () => {
 	startGame();
+	_data.effects[1].play();
+
 	console.log('clicado start')
 });
 
@@ -74,8 +86,8 @@ _gui.pads.forEach(pad => {
 const startGame = () => {
 	blink("--", () => {
 		newColor();
-		console.log("Game iniciado com sucesso!");
 	})
+	playSequence();
 }
 
 /*** FUN SET SCORE ***/
@@ -94,7 +106,43 @@ const newColor = () => {
 
 /*** FUN PLAY SEQUENCE ***/
 const playSequence = () => {
+	let counter = 0,
+		padOn = true;
+	
+	_data.playerSequence = [];
+	_data.playerCanPlay = false;
 
+/*	 setInterval: 
+		Executa uma função dada 
+		dentro do tempo apresentado.
+*/
+	const interval = setInterval(() => {
+		if (padOn) {
+
+			if (counter === _data.gameSequence.length)
+			{
+				clearInterval(interval);
+				disablePads();
+				_data.playerCanPlay = true;
+				return;
+			}
+			
+			const padId = _data.gameSequence[counter];
+			const pad = _gui.pads[padId];
+			_data.sounds[2].play();
+
+			_data.sounds[padId].play();
+
+			pad.classList.add("game__pad--active");
+			counter++;
+		}
+
+		else {
+			disablePads();
+		}
+
+		padOn = !padOn;
+	},150)
 }
 
 
@@ -105,6 +153,11 @@ const blink = (text, callback) => {
 	_gui.counter.innerHTML = text;
 
 	const interval = setInterval(() => {
+		if (!_data.gameOn) {
+			clearInterval(interval);
+			_gui.counter.classList.remove("gui__counter--on")
+			return;
+		}
 		if (on) {
 			_gui.counter.classList.remove("gui__counter--on");
 		}
