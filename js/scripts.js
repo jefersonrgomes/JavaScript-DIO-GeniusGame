@@ -196,6 +196,17 @@ const setScore = () => {
 
 /*** FUN NEW COLOR ***/
 const newColor = () => {
+	if (_data.score === 9) {
+		alert("NÃO, NÃO ... IMPOSSÍVEL.\n COMO UM SER DE RAÇA TÃO INFERIOR PODE SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
+		alert("Parabéns, você salvou a Terra e toda a Galáxia.!");
+		alert("Após Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
+		alert("Obrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.");
+		blink("🏆", () => {
+			_data.score = 0;
+			_data.gameSequence = [];
+		})
+		return;
+	}
 	_data.gameSequence.push(Math.floor(Math.random() * 4));
 	_data.score++;
 	setScore();
