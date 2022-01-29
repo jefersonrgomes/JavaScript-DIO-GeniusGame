@@ -29,8 +29,9 @@ const _data = {
 const _gui = {
 	counter: document.querySelector(".gui__counter"),
 	switch: document.querySelector(".gui__btn--switch"),
-	led: document.querySelector(".gui__led"),
+	led: document.querySelector(".gui__led--level"),
 	strict: document.querySelector(".gui__btn--strict"),
+	level: document.querySelector(".gui__btn--level"),
 	start: document.querySelector(".gui__btn--start"),
 	pads: document.querySelectorAll(".game__pad")
 }
@@ -84,46 +85,84 @@ _gui.strict.addEventListener("click", () => {
 
 _gui.start.addEventListener("click", () => {
 	if (!_data.gameOn) return;
+	startGame();
+	console.log('clicado start')
+});
+
+_gui.level.addEventListener("click", () => {
+	if (!_data.gameOn) return;
+	_data.effects[0].play();
 	
 	switch (countLevel) {
 		case 0:
 			selectedLevel = _levels.ease;
-			alert("level 1 - Ease  -let's take it easy on you this time baby");
+			alert("level 1 - Ease - let's take it easy on you this time baby");
+			_data.level = _gui.led.classList.toggle("gui__led--level1");
 			++countLevel
 			break;
 		case 1:
 			selectedLevel = _levels.normal;
+			_data.level = _gui.led.classList.toggle("gui__led--level2");
 			alert("level 2 - Normal - this challenge is not for crying babies");
 			++countLevel
 
 			break;
 		case 2:
 			selectedLevel = _levels.hard;
+			_data.level = _gui.led.classList.toggle("gui__led--level3");
+
 			alert("level 3 - Hard - are you really human !!!");
 			++countLevel
 			break;
 		case 3:
 			selectedLevel = _levels.veryhard;
+			_data.level = _gui.led.classList.toggle("gui__led--level4");
+
 			alert("level 4 - Very Hard - Only the best can survive here!");
 			++countLevel
 			break;
 		case 4:
 			selectedLevel = _levels.terminador;
+			_data.level = _gui.led.classList.toggle("gui__led--level5");
 			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
 			++countLevel
 			break;
-
-		default:
-			countLevel = 0;
 	}
-		
-	startGame();
-	console.log('clicado start')
+
+	if (countLevel > 4) countLevel = 0;	
 
 });
 
 /*** FUN PAD LISTENER ***/
 const padListener = (e) => {
+	if (!_data.playerCanPlay) return;
+
+	let soundId;
+	_gui.pads.forEach((pad, key) => {
+		if (pad === e.target)
+			soundId = key;
+	} )
+
+	e.target.classList.add("game__pad--active");
+
+	_data.sounds[soundId].play();
+	_data.playerSequence.push(soundId);
+
+	e.target.classList.remove("game_pad--active");
+
+	const currentMove = _data.playerSequence.length - 1;
+
+	if (_data.playerSequence[currentMove] !== _data.gameSequence[currentMove])
+	{
+		_data.playerCanPlay = false;
+		disablePads();
+		playSequence();
+	}
+	else if (currentMove === _data.gameSequence.length - 1) {
+		newColor();
+		playSequence();
+	}
+
 
 }
 
@@ -169,11 +208,19 @@ const playSequence = () => {
 	const interval = setInterval(() => {
 		//_data.effects[0].play();
 
+		if (!_data.gameOn) {
+			clearInterval(interval);
+			disablePads();
+			return;
+		}
+
 		if (padOn) {
 
 			if (counter === _data.gameSequence.length) {
 				clearInterval(interval);
 				disablePads();
+				waitForPlayerClick();
+
 				_data.playerCanPlay = true;
 				return;
 			}
@@ -224,6 +271,17 @@ const blink = (text, callback) => {
 
 /*** FUN WAIT FOR PLAYER CLIC ***/
 const waitForPlayerClick = () => {
+	clearTimeout(_data.timeout);
+
+	_data.timeout = setTimeout(() => {
+		if (!_data.playerCanPlay)
+			return;
+		
+		disablePads();
+		alert("Você é lerdo demais humano, vamos de novo!")
+		playSequence();
+
+	}, 5000)
 }
 
 /*** FUN RESET OR PLAY AGAIN ***/

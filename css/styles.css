@@ -173,7 +173,6 @@ body {
 	padding: 1.5rem;
 }
 
-
 .game__pad--tl.game__pad--active {
 	background-color: var(--clr-light-green);
 }
@@ -234,7 +233,7 @@ body {
 }
 
 .group {
-	margin-right: 2.2rem;
+	margin-right: 1.2rem;
 }
 
 .group__large {
@@ -258,7 +257,7 @@ body {
 .gui__btn {
 	width: 2.5rem;
 	height: 2.5rem;
-	margin-left: .2rem;
+	margin-left: .1rem;
 	border-radius: 5rem;
 	box-shadow: 0 .2rem .3rem #222;
 	border: .4rem solid #444;
@@ -276,6 +275,10 @@ body {
 
 .gui__btn--strict {
 	background-color: yellow;
+}
+
+.gui__btn--level {
+	background-color: blue;
 }
 
 .gui__btn--switch {
@@ -322,7 +325,7 @@ body {
 	color: var(--clr-counter-on);
 }
 
-.gui__led {
+.gui__led, .gui__led--level {
 	background-color: #32050C;
 	margin-left: 1rem;
 	margin-bottom: .5rem;
@@ -335,6 +338,22 @@ body {
 .gui__led--active {
 	background-color: red;
 }
+.gui__led--level1 {
+	background-color: cyan;
+}
+.gui__led--level2 {
+	background-color: greenyellow;
+}
+.gui__led--level3 {
+	background-color: yellow;
+}
+.gui__led--level4 {
+	background-color: red;
+}
+.gui__led--level5 {
+	background-color: purple;
+}
+
 
 /**********************************/
 /* 4. Footer
