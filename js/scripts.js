@@ -180,6 +180,12 @@ _gui.pads.forEach(pad => {
 
 /*** FUN START GAME ***/
 const startGame = () => {
+	alert("INDRODUÇÃO:\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
+	alert("REGRAS:\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
+	alert("INICIO DA MISSÃO:\nContamos com você para esta missão!\nah, e mais uma coisa, não importa o que aconteça la embaixo, não ative o modo Strict");
+
+
+
 	blink("--", () => {
 		newColor();
 		playSequence()
