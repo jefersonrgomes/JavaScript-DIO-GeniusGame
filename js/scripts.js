@@ -13,6 +13,7 @@ const _levels = {
 
 let countLevel = 0;
 let selectedLevel = _levels.ease;
+let timerLevel = 10000;
 
 const _data = {
 	gameOn: false,
@@ -96,12 +97,14 @@ _gui.level.addEventListener("click", () => {
 	switch (countLevel) {
 		case 0:
 			selectedLevel = _levels.ease;
+			timerLevel = 10000;
 			alert("level 1 - Ease - let's take it easy on you this time baby");
 			_data.level = _gui.led.classList.toggle("gui__led--level1");
 			++countLevel
 			break;
 		case 1:
 			selectedLevel = _levels.normal;
+			timerLevel = 8000;
 			_data.level = _gui.led.classList.toggle("gui__led--level2");
 			alert("level 2 - Normal - this challenge is not for crying babies");
 			++countLevel
@@ -109,6 +112,7 @@ _gui.level.addEventListener("click", () => {
 			break;
 		case 2:
 			selectedLevel = _levels.hard;
+			timerLevel = 6000;
 			_data.level = _gui.led.classList.toggle("gui__led--level3");
 
 			alert("level 3 - Hard - are you really human !!!");
@@ -116,6 +120,7 @@ _gui.level.addEventListener("click", () => {
 			break;
 		case 3:
 			selectedLevel = _levels.veryhard;
+			timerLevel = 5000;
 			_data.level = _gui.led.classList.toggle("gui__led--level4");
 
 			alert("level 4 - Very Hard - Only the best can survive here!");
@@ -123,6 +128,7 @@ _gui.level.addEventListener("click", () => {
 			break;
 		case 4:
 			selectedLevel = _levels.terminador;
+			timerLevel = 4000;
 			_data.level = _gui.led.classList.toggle("gui__led--level5");
 			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
 			++countLevel
@@ -156,7 +162,7 @@ const padListener = (e) => {
 	{
 		_data.playerCanPlay = false;
 		disablePads();
-		playSequence();
+		resetOrPlayAgain();
 	}
 	else if (currentMove === _data.gameSequence.length - 1) {
 		newColor();
@@ -279,14 +285,27 @@ const waitForPlayerClick = () => {
 		
 		disablePads();
 		alert("Você é lerdo demais humano, vamos de novo!")
-		playSequence();
-
-	}, 5000)
+		resetOrPlayAgain();
+	}, timerLevel)
 }
 
 /*** FUN RESET OR PLAY AGAIN ***/
 const resetOrPlayAgain = () => {
+	_data.playerCanPlay = false;
 
+	if (_data.strict) {
+		blink("!!", () => {
+			_data.score = 0;
+			_data.gameSequence = [];
+			startGame();
+		})
+	}
+	else {
+		blink("!!", () => {
+			setScore();
+			playSequence();
+		})
+	}
 }
 
 /*** FUN CHANCGE PAD CURSOR ***/
