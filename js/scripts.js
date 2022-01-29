@@ -63,8 +63,6 @@ _gui.strict.addEventListener("click", () => {
 	if(!_data.gameOn) return;	
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
 	_data.effects[1].play();
-
-
 });
 
 _gui.start.addEventListener("click", () => {
