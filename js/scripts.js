@@ -36,6 +36,7 @@ _soundUrls.forEach(sndPath => {
 
 const _effectsUrls = [
 	"../assets/audios/effects/start.wav",
+	"../assets/audios/effects/strict.wav",
 	"../assets/audios/effects/congratulations.wav",
 	"../assets/audios/effects/nextlevel.wav "
 ]
@@ -61,14 +62,14 @@ _gui.switch.addEventListener("click", () => {
 _gui.strict.addEventListener("click", () => {
 	if(!_data.gameOn) return;	
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
-	_data.sounds[2].play();
+	_data.effects[1].play();
 
 
 });
 
 _gui.start.addEventListener("click", () => {
 	startGame();
-	_data.effects[1].play();
+	_data.effects[2].play();
 
 	console.log('clicado start')
 });
