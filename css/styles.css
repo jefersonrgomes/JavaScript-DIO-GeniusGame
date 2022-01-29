@@ -57,7 +57,7 @@
 	--clr-switch: #3193DE;
 
 	--game-size: 48rem;
-	--game-border: 1.5rem solid var(--clr-border);
+	--game-border: 1.5rem solid #27284C;
 }
 
 /**********************************/
@@ -77,15 +77,24 @@ body {
 
 .header {
 	width: 92rem;
-	height: 7rem;
+	height: 8rem;
 	background: #000;
 	display: flex;
 	color: whitesmoke;
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	border-bottom-right-radius: 2.5rem ;
+	border-bottom-right-radius: 2.5rem;
+	border-bottom: 1rem solid #27284C;
+	border-right: 1rem solid #27284C;
+	box-shadow: 0 .5rem 1.2rem #AC4D76;
+}
 
+.header__title {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	margin: 0;
+	padding-left: 1.2rem;
 }
 
 .logo {
@@ -131,7 +140,7 @@ body {
 	height: var(--game-size);
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 1rem;
+	margin-top: 6rem;
 
 }
 
