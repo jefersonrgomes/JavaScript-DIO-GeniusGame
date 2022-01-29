@@ -72,14 +72,20 @@ body {
 	background-repeat: repeat;
 	background-size: cover;
 	font-family: "Bungee", Verdana, Geneva, Tahoma, sans-serif;
+	height: 100vh;
 }
 
-
 .header {
-	width: 100%;
+	width: 92rem;
 	height: 7rem;
-	background-color: #00a74b00;
+	background: #000;
 	display: flex;
+	color: whitesmoke;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	border-bottom-right-radius: 2.5rem ;
+
 }
 
 .logo {
@@ -92,12 +98,24 @@ body {
 	margin-left: 1rem;
 }
 
+.header--social {
+	justify-content: center;
+	align-items: center;
+	color: whitesmoke !important;
+
+}
+
+.header--social .social {
+	color: whitesmoke !important;
+
+}
+
 /**********************************/
 /* 2. Body
 /**********************************/
 .container {
 	width: var(--game-size);
-	height: 150vh;
+	height: 80vh;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -113,7 +131,7 @@ body {
 	height: var(--game-size);
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 10rem;
+	margin-top: 1rem;
 
 }
 
@@ -312,7 +330,20 @@ body {
 /* 4. Footer
 /**********************************/
 footer {
-	text-align: center;
-	margin-top: 25rem;
-	font-size: 2.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	margin-top: 3rem;
+}
+
+.footer--title, .header--social {
+	text-align: right;
+	font-size: 1.5rem;
+}
+
+.social {
+	text-decoration: none;
+	margin-right: 3rem;
+	color: #222;
 }
