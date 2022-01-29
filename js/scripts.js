@@ -2,13 +2,12 @@
 /*    ATRIBUTES    */
 /*** *** *** *** ***/
 
-
 const _levels = {
-	ease: 750,
-	normal: 550,
-	hard: 350,
-	veryhard:250,
-	terminador: 150
+	ease: 600,
+	normal: 500,
+	hard: 400,
+	veryhard:300,
+	terminador: 200
 }
 
 let countLevel = 0;
@@ -30,7 +29,8 @@ const _data = {
 const _gui = {
 	counter: document.querySelector(".gui__counter"),
 	switch: document.querySelector(".gui__btn--switch"),
-	led: document.querySelector(".gui__led--level"),
+	led: document.querySelector(".gui__led"),
+	ledLevel: document.querySelector(".gui__led--level"),
 	strict: document.querySelector(".gui__btn--strict"),
 	level: document.querySelector(".gui__btn--level"),
 	start: document.querySelector(".gui__btn--start"),
@@ -72,16 +72,18 @@ _gui.switch.addEventListener("click", () => {
 	_data.playerSequence = [];
 	disablePads();
 	_gui.led.classList.remove("gui__led--active");
-
+	_gui.ledLevel.classList.remove("gui__led--level1", "gui__led--level2", "gui__led--level3", "gui__led--level4", "gui__led--level5");
 	if (!_data.gameOn) return;
 	else _data.effects[2].play();
-
+	countLevel = 0;
 });
 
 _gui.strict.addEventListener("click", () => {
 	if (!_data.gameOn) return;
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
 	_data.effects[1].play();
+	counter = 0;
+	alert("DEATH MODE ACTIVATED - FROM NOW ON YOU CAN'T MISS HUMAN! UHAHAHA YOU GALAXI IS OUR!");
 });
 
 _gui.start.addEventListener("click", () => {
@@ -99,13 +101,13 @@ _gui.level.addEventListener("click", () => {
 			selectedLevel = _levels.ease;
 			timerLevel = 10000;
 			alert("level 1 - Ease - let's take it easy on you this time baby");
-			_data.level = _gui.led.classList.toggle("gui__led--level1");
+			_data.level = _gui.ledLevel.classList.toggle("gui__led--level1");
 			++countLevel
 			break;
 		case 1:
 			selectedLevel = _levels.normal;
 			timerLevel = 8000;
-			_data.level = _gui.led.classList.toggle("gui__led--level2");
+			_data.level = _gui.ledLevel.classList.toggle("gui__led--level2");
 			alert("level 2 - Normal - this challenge is not for crying babies");
 			++countLevel
 
@@ -113,7 +115,7 @@ _gui.level.addEventListener("click", () => {
 		case 2:
 			selectedLevel = _levels.hard;
 			timerLevel = 6000;
-			_data.level = _gui.led.classList.toggle("gui__led--level3");
+			_data.level = _gui.ledLevel.classList.toggle("gui__led--level3");
 
 			alert("level 3 - Hard - are you really human !!!");
 			++countLevel
@@ -121,7 +123,7 @@ _gui.level.addEventListener("click", () => {
 		case 3:
 			selectedLevel = _levels.veryhard;
 			timerLevel = 5000;
-			_data.level = _gui.led.classList.toggle("gui__led--level4");
+			_data.level = _gui.ledLevel.classList.toggle("gui__led--level4");
 
 			alert("level 4 - Very Hard - Only the best can survive here!");
 			++countLevel
@@ -129,7 +131,7 @@ _gui.level.addEventListener("click", () => {
 		case 4:
 			selectedLevel = _levels.terminador;
 			timerLevel = 4000;
-			_data.level = _gui.led.classList.toggle("gui__led--level5");
+			_data.level = _gui.ledLevel.classList.toggle("gui__led--level5");
 			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
 			++countLevel
 			break;
@@ -284,7 +286,7 @@ const waitForPlayerClick = () => {
 			return;
 		
 		disablePads();
-		alert("Você é lerdo demais humano, vamos de novo!")
+		alert("You are too slow human!")
 		resetOrPlayAgain();
 	}, timerLevel)
 }
