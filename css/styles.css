@@ -68,7 +68,7 @@ html {
 }
 
 body {
-	background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+background-color: #aaa;
 	font-family: "Bungee", Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -219,19 +219,76 @@ body {
 	box-shadow: none;
 }
 
-
 .gui__btn--start {
 	background-color: red;
 }
+
 .gui__btn--strict {
 	background-color: yellow;
 }
 
-	/**********************************/
-	/* 4. Footer
+.gui__btn--switch {
+	background-color: #222;
+	margin-left: .5rem;
+	margin-right: .5rem;
+	width: 5rem;
+	height: 2.3rem;
+	border-radius: .3rem;
+	cursor: pointer;
+}
+
+.gui__btn--switch::before {
+	content: "";
+	background-color: var(--clr-switch);
+	display: block;
+	position: relative;
+	left: 2.5rem;
+	width: 2.2rem;
+	height: 1.9rem;
+	border-radius: .3rem;
+	border: .2rem solid #333;
+}
+
+.gui__btn--switch--on::before{
+	left:0;
+}
+
+.gui__counter{
+	background-color: var(--clr-counter-bg);
+	color: var(--clr-counter-off);
+	font-family: "Iceland", cursive;
+	font-weight: bold;
+	font-size: 3rem;
+	text-align: right;
+	width: 5.5rem;
+	border: .3rem solid #000;
+	border-radius: 1rem;
+	padding-right: .2rem;
+	padding-left: .3rem;
+}
+
+.gui__counter--on{
+	color: var(--clr-counter-on);
+}
+
+.gui__led{
+	background-color: #32050C;
+	margin-left: 1rem;
+	margin-bottom: .5rem;
+	width: .8rem;
+	height: .8rem;
+	border: .2rem solid #222;
+	border-radius: 25rem;
+}
+
+.gui__led--active{
+	background-color: red;	
+}
 /**********************************/
-	footer {
-		text-align: center;
-		margin-top: 25rem;
-		font-size: 2.5rem;
-	}
+/* 4. Footer
+/**********************************/
+footer {
+	text-align: center;
+	margin-top: 25rem;
+	font-size: 2.5rem;
+}
