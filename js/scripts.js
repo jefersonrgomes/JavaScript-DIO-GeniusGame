@@ -57,6 +57,8 @@ _gui.switch.addEventListener("click", () => {
 	_data.playerSequence = [];
 		disablePads();
 	_gui.led.classList.remove("gui__led--active");
+	_data.effects[2].play();
+
 }); 
 
 _gui.strict.addEventListener("click", () => {
@@ -82,12 +84,11 @@ _gui.pads.forEach(pad => {
 
 /*** FUN START GAME ***/
 const startGame = () => {
-		_data.effects[2].play();
 	blink("--", () => {
 		newColor();
+		playSequence()
 	})
-
-	playSequence();
+	
 }
 
 /*** FUN SET SCORE ***/
@@ -99,15 +100,15 @@ const setScore = () => {
 
 /*** FUN NEW COLOR ***/
 const newColor = () => {
-	_data.gameSequence.push =  Math.floor(Math.random() * 4);
+	_data.gameSequence.push(Math.floor(Math.random() * 4));
 	_data.score++;
 	setScore();
 }
 
 /*** FUN PLAY SEQUENCE ***/
 const playSequence = () => {
-	let counter = 0,
-		padOn = true;
+	let counter = 0;
+	let padOn = true;
 	
 	_data.playerSequence = [];
 	_data.playerCanPlay = false;
@@ -117,6 +118,8 @@ const playSequence = () => {
 		dentro do tempo apresentado.
 */
 	const interval = setInterval(() => {
+		//_data.effects[0].play();
+
 		if (padOn) {
 
 			if (counter === _data.gameSequence.length)
@@ -129,7 +132,6 @@ const playSequence = () => {
 			
 			const padId = _data.gameSequence[counter];
 			const pad = _gui.pads[padId];
-			_data.sounds[2].play();
 
 			_data.sounds[padId].play();
 
@@ -142,7 +144,7 @@ const playSequence = () => {
 		}
 
 		padOn = !padOn;
-	},150)
+	},750)
 }
 
 
