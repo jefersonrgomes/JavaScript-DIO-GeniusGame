@@ -6,8 +6,9 @@
 const _levels = {
 	ease: 750,
 	normal: 550,
-	hard: 400,
-	terminador: 250
+	hard: 350,
+	veryhard:250,
+	terminador: 150
 }
 
 let countLevel = 0;
@@ -84,28 +85,36 @@ _gui.strict.addEventListener("click", () => {
 _gui.start.addEventListener("click", () => {
 	if (!_data.gameOn) return;
 	
+	switch (countLevel) {
+		case 0:
+			selectedLevel = _levels.ease;
+			alert("level 1 - Ease  -let's take it easy on you this time baby");
+			++countLevel
+			break;
+		case 1:
+			selectedLevel = _levels.normal;
+			alert("level 2 - Normal - this challenge is not for crying babies");
+			++countLevel
 
-	if (countLevel === 0) {
-		selectedLevel = _levels.ease;
-		alert("level 1");
-		++countLevel
-	}
-	else if (countLevel === 1) {
-		selectedLevel = _levels.normal;
-		alert("level 2");
-		++countLevel
+			break;
+		case 2:
+			selectedLevel = _levels.hard;
+			alert("level 3 - Hard - are you really human !!!");
+			++countLevel
+			break;
+		case 3:
+			selectedLevel = _levels.veryhard;
+			alert("level 4 - Very Hard - Only the best can survive here!");
+			++countLevel
+			break;
+		case 4:
+			selectedLevel = _levels.terminador;
+			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
+			++countLevel
+			break;
 
-
-	}
-
-	else if (countLevel === 2) {
-		selectedLevel = _levels.hard;
-		alert("level 3");
-		++countLevel
-	}
-	
-	else {
-		countLevel = 0;
+		default:
+			countLevel = 0;
 	}
 		
 	startGame();
