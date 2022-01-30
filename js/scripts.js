@@ -11,6 +11,7 @@ const _levels = {
 	terminador: 200
 }
 
+let record;
 let messageCard = "";
 let countLevel = 0;
 let selectedLevel = _levels.ease;
@@ -96,17 +97,20 @@ _gui.switch.addEventListener("click", () => {
 
 _gui.strict.addEventListener("click", () => {
 	if (!_data.gameOn) return;
+	alert("*** 🚨 STRICT MODE ATIVADO 🚨 ***\n\n👨‍⚕️ PROFESSOR 👨‍⚕️\n\nOh não, o que você fez !!!\nAo ativar o STRICT MODE você tera apenas uma unica chance de descriptografar a sequencia do GENIUS\nSe você falhar sera FIM DE JOGO!");
+	alert("🛸 ALIENS 🛸 \nMODO MORTE SUBITA ATIVADO\nA PARTIR DE AGORA VOCÊ NÃO PODE ERRAR NENHUMA SEQUENCIA HUMANO!\nUuHAHaaAaAhHA GALAXIA SEU NOSSA SERA");
+	document.getElementById("textMode").innerHTML = "STRICT";
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
 	_data.effects[1].play();
 	counter = 0;
-	alert("*** 🚨 STRICT MODE ATIVADO 🚨 ***\n--- --- ---\nAo ativar o STRICT MODE você tera apenas uma unica chance de descriptografar a sequencia do GENIUS\nSe falhar sera FIM DE JOGO!");
-	alert("🛸 ALIENS 🛸 \nMODO MORTE SUBITA ATIVADO\nA PARTIR DE AGORA VOCÊ NÃO PODE ERRAR NENHUMA SEQUENCIA HUMANO!\nUuHAHaaAaAhHA VOCÊ GALAXI É NOSSO");
-});
+	});
 
 _gui.start.addEventListener("click", () => {
 	if (!_data.gameOn) return;
 	startGame();
-	console.log('clicado start')
+
+	if (!_data.strict) 	document.getElementById("textMode").innerHTML = "NORMAL";
+	else document.getElementById("textMode").innerHTML = "STRICT";
 });
 
 _gui.level.addEventListener("click", () => {
@@ -151,7 +155,7 @@ const swithLevel = () => {
 				_data.level = _gui.ledLevel.classList.remove("gui__led--level1");
 				_data.level = _gui.ledLevel.classList.add("gui__led--level2");
 				alert("*** LEVEL 2 - NORMAL ***");
-				alert("🛸 ALIENS 🛸\nEsse desafio não é para bebês choroes, que tal desistir e voltar para o colinho da mamae!");
+				alert("🛸 ALIENS 🛸\n¨Esse desafio não é para bebês choroes, que tal desistir e voltar para o colinho da mamae!¨");
 				++countLevel
 				document.getElementById("textLevel").innerHTML = " 2 NORMAL";
 				blink("L2");
@@ -251,7 +255,7 @@ const startGame = () => {
 	alert("📰 ATENÇÃO NOTICIA URGENTE 📰 \n\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
 	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nHei você é realmente corajoso hein!\nVou te contar o que descobrimos por aqui\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
 	alert("👨‍⚕️ PROFESSOR 👨‍⚕️:\nGenius emite sons e audios curtos\nAjuste o volume do seu dispositivo para uma altura agradavel");
-	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nContamos com você para esta missão!\nah, e mais uma coisa, não importa o que aconteça la embaixo, não aperte nenhum botão diferentãoa, isso pode acelerar o tempo ou tornar as coisas mais complicadas!\n\nBom agora é com você. Boa Sorte!");
+	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nContamos com você para esta missão!\nAh, e mais uma coisa, não importa o que aconteça la embaixo, não aperte nenhum botão diferentãoa, isso pode acelerar o tempo ou tornar as coisas mais complicadas!\n\nBom agora é com você. Boa Sorte!");
 
 	//_data.stages[0].play();
 
@@ -290,6 +294,7 @@ const setScore = () => {
 			break;
 	}
 
+	document.getElementById("textRound").innerHTML = display;
 	document.getElementById("multscore").innerHTML = multscore;
 	document.getElementById("textScore").innerHTML = multscore * display;
 
@@ -297,14 +302,16 @@ const setScore = () => {
 
 /*** FUN NEW COLOR ***/
 const newColor = () => {
-	if (_data.score === 9) {
+	if (_data.score === 2) {
 
 
 		alert("🛸 ALIENS 🛸\nNÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
 		alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nParabéns, você salvou a Terra e toda a Galáxia.!");
 		alert("📰 NOTICIA URGENTE 📰 \n\nApós Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
 		alert("🎇🎇✨ FIM DE JOGO - VOCE VENCEU ✨🎇🎇.\n\nObrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.\n\nDesenvolvido por: Jeferson Gomes 🙋‍♂️");
+		if (_data.score > record) record = _data.score;
 		_data.stages[1].play();
+		alert("🎇🎇✨ FIM DE JOGO - VOCE VENCEU ✨🎇🎇.\n\nObrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.\n\nDesenvolvido por: Jeferson Gomes 🙋‍♂️");
 
 		blink("🏆", () => {
 			_data.score = 0;
