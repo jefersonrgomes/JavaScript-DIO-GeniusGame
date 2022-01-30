@@ -97,7 +97,7 @@ _gui.strict.addEventListener("click", () => {
 	_data.effects[1].play();
 	counter = 0;
 	alert("*** 🚨 STRICT MODE ATIVADO 🚨 ***\n--- --- ---\nAo ativar o STRICT MODE você tera apenas uma unica chance de descriptografar a sequencia do GENIUS\nSe falhar sera FIM DE JOGO!");
-	alert("🛸 ALIENS: \nMODO MORTE SUBITA ATIVADO\nA PARTIR DE AGORA VOCÊ NÃO PODE ERRAR NENHUMA SEQUENCIA HUMANO!\nUuHAHaaAaAhHA VOCÊ GALAXI É NOSSO");
+	alert("🛸 ALIENS 🛸 \nMODO MORTE SUBITA ATIVADO\nA PARTIR DE AGORA VOCÊ NÃO PODE ERRAR NENHUMA SEQUENCIA HUMANO!\nUuHAHaaAaAhHA VOCÊ GALAXI É NOSSO");
 });
 
 _gui.start.addEventListener("click", () => {
@@ -216,10 +216,10 @@ _gui.pads.forEach(pad => {
 /*** FUN START GAME ***/
 const startGame = () => {
 
-	alert("INDRODUÇÃO:\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
-	alert("REGRAS:\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
-	alert("INICIO DA MISSÃO:\nContamos com você para esta missão!\nah, e mais uma coisa, não importa o que aconteça la embaixo, não ative o modo Strict");
-	alert("DICAS IMPORTANTES:\nGenius emite sons e audios curtos\nAjuste o volume do seu dispositivo para uma altura agradavel");
+	alert("📰 ATENÇÃO NOTICIA URGENTE 📰 \n\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
+	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nHei você é realmente corajoso hein!\nVou te contar o que descobrimos por aqui\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
+	alert("👨‍⚕️ PROFESSOR 👨‍⚕️:\nGenius emite sons e audios curtos\nAjuste o volume do seu dispositivo para uma altura agradavel");
+	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nContamos com você para esta missão!\nah, e mais uma coisa, não importa o que aconteça la embaixo, não aperte nenhum botão diferentãoa, isso pode acelerar o tempo ou tornar as coisas mais complicadas!\n\nBom agora é com você. Boa Sorte!");
 
 	//_data.stages[0].play();
 
@@ -240,12 +240,13 @@ const setScore = () => {
 /*** FUN NEW COLOR ***/
 const newColor = () => {
 	if (_data.score === 9) {
+
+		alert("🛸 ALIENS 🛸\nNÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
+		alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nParabéns, você salvou a Terra e toda a Galáxia.!");
+		alert("📰 NOTICIA URGENTE 📰 \n\nApós Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
+		alert("🎇🎇✨ FIM DE JOGO - VOCE VENCEU ✨🎇🎇.\n\nObrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.\n\nDesenvolvido por: Jeferson Gomes 🙋‍♂️");
 		_data.stages[1].play();
 
-		alert("NÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
-		alert("Parabéns, você salvou a Terra e toda a Galáxia.!");
-		alert("Após Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
-		alert("Obrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.");
 		blink("🏆", () => {
 			_data.score = 0;
 			_data.gameSequence = [];
@@ -343,7 +344,7 @@ const waitForPlayerClick = () => {
 			return;
 
 		disablePads();
-		alert("🛸 ALIENS: VOCE É MUITO LERDO HUMANO! JAMAIS CONSEGUIRA DESATIVAR O GENIUS!")
+		alert("🛸 ALIENS 🛸\nVOCE É MUITO LERDO HUMANO! JAMAIS CONSEGUIRA DESATIVAR O GENIUS!")
 		resetOrPlayAgain();
 	}, timerLevel)
 }
@@ -356,7 +357,7 @@ const resetOrPlayAgain = () => {
 		blink("##", () => {
 			_data.score = 0;
 			_data.gameSequence = [];
-			alert("🛸 ALIENS:\nVOCE PERDEU HUMANO!\nSUA TENTATIVA DE CORROMPER O GENIUS FALHOU\nO GENIUS FOI ATIVADO COMPLETAMENTE\nSEU PLANETA  E SUA GALAXIA AGORA NOS É NOSSO\nREDUZA-SE A SUA INSIGNIFICANCIA\nE VA AGORA LIMPAR A JAULA DOS BLORGS\nE TERA SORTE SE NÃO FOR DEVORADO POR ELES HAHAHAHAHA!!!");
+			alert("🛸 ALIENS 🛸\nVOCE PERDEU HUMANO!\nSUA TENTATIVA DE CORROMPER O GENIUS FALHOU\nO GENIUS FOI ATIVADO COMPLETAMENTE\nSEU PLANETA  E SUA GALAXIA AGORA NOS É NOSSO\nREDUZA-SE A SUA INSIGNIFICANCIA\nE VA AGORA LIMPAR A JAULA DOS BLORGS\nE TERA SORTE SE NÃO FOR DEVORADO POR ELES HAHAHAHAHA!!!");
 			alert("*** FIM DE JOGO ***\n--- --- ---\nVocê foi ambicioso e quiz arriscar tudo ao acionar o STRICT Mode.\n\nGAME OVER\n\nPRESS START FOR NEW GAME");
 
 			_data.strict = false;
