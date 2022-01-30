@@ -1,3 +1,4 @@
+
 /*** *** *** *** ***/
 /*    ATRIBUTES    */
 /*** *** *** *** ***/
@@ -10,6 +11,7 @@ const _levels = {
 	terminador: 200
 }
 
+let messageCard = "";
 let countLevel = 0;
 let selectedLevel = _levels.ease;
 let timerLevel = 10000;
@@ -26,6 +28,7 @@ const _data = {
 	gameSequence: [],
 	playerSequence: []
 };
+
 
 const _gui = {
 	counter: document.querySelector(".gui__counter"),
@@ -107,18 +110,17 @@ _gui.start.addEventListener("click", () => {
 });
 
 _gui.level.addEventListener("click", () => {
-	
+
 	if (!_data.gameOn) return;
 	_data.effects[1].play();
 
 
-	if (countLevel > 4)
-	{
+	if (countLevel > 4) {
 		_data.level = _gui.ledLevel.classList.remove("gui__led--level5");
 		countLevel = 0;
 		swithLevel();
 	}
-	else{		
+	else {
 		swithLevel();
 	}
 
@@ -126,50 +128,80 @@ _gui.level.addEventListener("click", () => {
 
 const swithLevel = () => {
 	switch (countLevel) {
-		case 0:
-			selectedLevel = _levels.ease;
-			timerLevel = 10000;
-			alert("*** LEVEL 1 - FACIL ***");
-			alert("🛸 ALIENS 🛸\nVamos pegar leve com você desta vez novato");
 
-			_data.level = _gui.ledLevel.classList.add("gui__led--level1");
-			++countLevel
+		case 0:
+			blink("L1", () => {
+				selectedLevel = _levels.ease;
+				timerLevel = 10000;
+				alert("*** LEVEL 1 - FACIL ***");
+				alert("🛸 ALIENS 🛸\nVamos pegar leve com você desta vez novato");
+				_data.level = _gui.ledLevel.classList.add("gui__led--level1");
+				++countLevel
+				document.getElementById("textLevel").innerHTML = " 1 FACIL";
+				blink("L1");
+				blink("--");
+
+			})
 			break;
 		case 1:
-			selectedLevel = _levels.normal;
-			timerLevel = 8000;
-			_data.level = _gui.ledLevel.classList.remove("gui__led--level1");
-			_data.level = _gui.ledLevel.classList.add("gui__led--level2");
-			alert("*** LEVEL 2 - NORMAL ***");
-			alert("🛸 ALIENS 🛸\nEsse desafio não é para bebês choroes, que tal desistir e voltar para o colinho da mamae!");
-			++countLevel
+			blink("L2", () => {
+				selectedLevel = _levels.normal;
+				timerLevel = 8000;
+
+				_data.level = _gui.ledLevel.classList.remove("gui__led--level1");
+				_data.level = _gui.ledLevel.classList.add("gui__led--level2");
+				alert("*** LEVEL 2 - NORMAL ***");
+				alert("🛸 ALIENS 🛸\nEsse desafio não é para bebês choroes, que tal desistir e voltar para o colinho da mamae!");
+				++countLevel
+				document.getElementById("textLevel").innerHTML = " 2 NORMAL";
+				blink("L2");
+				blink("--");
+			})
 			break;
+
 		case 2:
-			selectedLevel = _levels.hard;
-			timerLevel = 6000;
-			_data.level = _gui.ledLevel.classList.remove("gui__led--level2");
-			_data.level = _gui.ledLevel.classList.add("gui__led--level3");
-			alert("*** LEVEL 3 - HARD  ***");
-			alert("🛸 ALIENS 🛸\n👀 Você é ousado ah! ... 👽 Gostei disso.\nVoce esta realmente pronto para este nivel Humano?");
-			++countLevel
+			blink("L3", () => {
+				selectedLevel = _levels.hard;
+				timerLevel = 6000;
+				_data.level = _gui.ledLevel.classList.remove("gui__led--level2");
+				_data.level = _gui.ledLevel.classList.add("gui__led--level3");
+				alert("*** LEVEL 3 - HARD  ***");
+				alert("🛸 ALIENS 🛸\n👀 Você é ousado ah! ... 👽 Gostei disso.\nVoce esta realmente pronto para este nivel Humano?");
+				++countLevel
+				document.getElementById("textLevel").innerHTML = " 3 DIFICIL";
+				blink("L3");
+				blink("--");
+			})
 			break;
+
 		case 3:
-			selectedLevel = _levels.veryhard;
-			timerLevel = 5000;
-			_data.level = _gui.ledLevel.classList.remove("gui__led--level3");
-			_data.level = _gui.ledLevel.classList.add("gui__led--level4");
-			alert("*** LEVEL 4 - VERY HARD  ***");
-			alert("🛸 ALIENS 🛸\n👀👀👀 Você é louco cara ... espera, você é louco mesmo não é?");
-			++countLevel
+			blink("L4", () => {
+				selectedLevel = _levels.veryhard;
+				timerLevel = 5000;
+				_data.level = _gui.ledLevel.classList.remove("gui__led--level3");
+				_data.level = _gui.ledLevel.classList.add("gui__led--level4");
+				alert("*** LEVEL 4 - VERY HARD  ***");
+				alert("🛸 ALIENS 🛸\n👀👀👀 Você é louco cara ... espera, você é louco mesmo não é?");
+				++countLevel
+				document.getElementById("textLevel").innerHTML = " 4 SUPER DIFICIL";
+				blink("L4");
+				blink("--");
+			})
 			break;
+
 		case 4:
-			selectedLevel = _levels.terminador;
-			timerLevel = 4000;
-			_data.level = _gui.ledLevel.classList.remove("gui__led--level4");
-			_data.level = _gui.ledLevel.classList.add("gui__led--level5");
-			alert("*** LEVEL 5 - ULTIMATE ***");
-			alert("🛸 ALIENS 🛸\nSobreviva se você puder!");
-			++countLevel
+			blink("L5", () => {
+				selectedLevel = _levels.terminador;
+				timerLevel = 4000;
+				_data.level = _gui.ledLevel.classList.remove("gui__led--level4");
+				_data.level = _gui.ledLevel.classList.add("gui__led--level5");
+				alert("*** LEVEL 5 - ULTIMATE ***");
+				alert("🛸 ALIENS 🛸\nSobreviva se você puder!");
+				++countLevel
+				document.getElementById("textLevel").innerHTML = " 5 ULTIMATE";
+				blink("L5");
+				blink("--");
+			})
 			break;
 	}
 }
@@ -232,14 +264,41 @@ const startGame = () => {
 
 /*** FUN SET SCORE ***/
 const setScore = () => {
+	let multscore = 2;
 	const score = _data.score.toString();
 	const display = "00".substring(0, 2 - score.length) + score;
 	_gui.counter.innerHTML = display;
+
+	switch (countLevel) {
+		case 0:
+			multscore = 2;
+			break;
+		case 1:
+			multscore = 3;
+			break;
+		case 2:
+			multscore = 4;
+			break;
+		case 3:
+			multscore = 5;
+			break;
+		case 4:
+			multscore = 6;
+			break;
+		case 5:
+			multscore = 10;
+			break;
+	}
+
+	document.getElementById("multscore").innerHTML = multscore;
+	document.getElementById("textScore").innerHTML = multscore * display;
+
 }
 
 /*** FUN NEW COLOR ***/
 const newColor = () => {
 	if (_data.score === 9) {
+
 
 		alert("🛸 ALIENS 🛸\nNÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
 		alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nParabéns, você salvou a Terra e toda a Galáxia.!");
@@ -387,3 +446,5 @@ const disablePads = () => {
 		pad.classList.remove("game__pad--active");
 	})
 }
+
+

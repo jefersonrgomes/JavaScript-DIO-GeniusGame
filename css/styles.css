@@ -76,57 +76,121 @@ body {
 }
 
 .header {
-	width: 92rem;
-	height: 8rem;
+	width: 100vw;
+	height: 16rem;
 	background: #000;
 	display: flex;
 	color: whitesmoke;
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	border-bottom-right-radius: 2.5rem;
 	border-bottom: 1rem solid #27284C;
 	border-right: 1rem solid #27284C;
-	box-shadow: 0 .5rem 1.2rem #AC4D76;
 }
 
-.header__title {
-	font-size: 1.5rem;
-	text-transform: uppercase;
-	margin: 0;
-	padding-left: 1.2rem;
+.header__logo--container {
+	display: flex;
+	justify-content: start;
+	align-content: center;
 }
 
 .logo {
 	background-image: url('../assets/images/dio-logo.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-	width: 25rem;
-	height: 7rem;
-	border-bottom-right-radius: 25rem;
-	margin-left: 1rem;
+	width: 13rem;
+	height: 15rem;
+	margin-left: 1.5rem;
 }
 
-.header--social {
+.header__title {
+	font-size: 4.5rem;
+	text-transform: uppercase;
+	align-self: center;
+}
+
+.header__social {
+	font-size: 2rem;
 	justify-content: center;
 	align-items: center;
 	color: whitesmoke !important;
+	border: 1px solid greenyellow;
 
 }
 
-.header--social .social {
+.header__social .social {
 	color: whitesmoke !important;
 
 }
+
+.sub__header {
+	width: 100vw;
+	height: 20rem;
+	background: #000;
+	display: flex;
+	color: whitesmoke;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	border-bottom: 1rem solid #27284C;
+	border-right: 1rem solid #27284C;
+	box-shadow: 0 .5rem 1.2rem #AC4D76;
+}
+
+.header__container {
+	display: flex;
+	width: 100vw;
+	align-content: center;
+	justify-content: space-around;
+}
+
+.header__infos {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 2rem;
+	border: 1px solid greenyellow;
+
+}
+
+.header__bottom--container {
+	display: flex;
+	border: 1px solid red;
+}
+
 
 /**********************************/
 /* 2. Body
 /**********************************/
+.wrapper-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+}
+
 .container {
 	width: var(--game-size);
 	height: 80vh;
 	margin-left: auto;
 	margin-right: auto;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+
+.box-container {
+	position: relative;
+	width: calc(var(--game-size)/1.5);
+	height: var(--game-size);
+	background-color: #27284C;
+	border-radius: 2rem;
+	display: flex;
+	margin-top: 6rem;
+
 }
 
 /**********************************/
@@ -390,4 +454,19 @@ footer {
 	html {
 		font-size: 40%;
 	}
-}
+
+	.header {
+		justify-content: center;
+		height: 18rem;
+		border-bottom: none;
+		border-right: none;
+	}
+
+	.header__social {
+		font-size: 2.5rem;
+
+	}
+
+	.sub__header {
+		height: 18rem;
+	}
