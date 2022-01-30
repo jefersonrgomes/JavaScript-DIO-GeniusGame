@@ -10,8 +10,8 @@ const _levels = {
 	veryhard: 300,
 	terminador: 200
 }
-
-let record;
+let currentScore = 0;
+let record = 0;
 let messageCard = "";
 let countLevel = 0;
 let selectedLevel = _levels.ease;
@@ -252,6 +252,7 @@ _gui.pads.forEach(pad => {
 /*** FUN START GAME ***/
 const startGame = () => {
 
+	currentScore = 0;
 	alert("📰 ATENÇÃO NOTICIA URGENTE 📰 \n\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
 	alert("👨‍⚕️ PROFESSOR 👨‍⚕️\n\nHei você é realmente corajoso hein!\nVou te contar o que descobrimos por aqui\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
 	alert("👨‍⚕️ PROFESSOR 👨‍⚕️:\nGenius emite sons e audios curtos\nAjuste o volume do seu dispositivo para uma altura agradavel");
@@ -293,16 +294,18 @@ const setScore = () => {
 			multscore = 10;
 			break;
 	}
-
+	currentScore = multscore * display;
 	document.getElementById("textRound").innerHTML = display;
 	document.getElementById("multscore").innerHTML = multscore;
-	document.getElementById("textScore").innerHTML = multscore * display;
+	document.getElementById("textScore").innerHTML = currentScore;
+	if (currentScore > record) record = currentScore;
+	document.getElementById("textRecord").innerHTML = record;
 
 }
 
 /*** FUN NEW COLOR ***/
 const newColor = () => {
-	if (_data.score === 2) {
+	if (_data.score === 9) {
 
 
 		alert("🛸 ALIENS 🛸\nNÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
