@@ -6,7 +6,7 @@ const _levels = {
 	ease: 600,
 	normal: 500,
 	hard: 400,
-	veryhard:300,
+	veryhard: 300,
 	terminador: 200
 }
 
@@ -18,6 +18,7 @@ const _data = {
 	gameOn: false,
 	timeout: undefined,
 	sounds: [],
+	stages: [],
 	effects: [],
 	strict: false,
 	playerCanPlay: false,
@@ -49,6 +50,17 @@ _soundUrls.forEach(sndPath => {
 	_data.sounds.push(audio);
 });
 
+const _audioStagesUrls = [
+	'../assets/audios/stages/startgame.mp3',
+	'../assets/audios/stages/win.mp3'
+]
+
+_audioStagesUrls
+	.forEach(sndPath => {
+		const audio = new Audio(sndPath);
+		_data.stages.push(audio);
+	});
+
 const _effectsUrls = [
 	"../assets/audios/effects/start.wav",
 	"../assets/audios/effects/strict.wav",
@@ -71,6 +83,7 @@ _gui.switch.addEventListener("click", () => {
 	_data.gameSequence = [];
 	_data.playerSequence = [];
 	disablePads();
+	changePadCursor("auto");
 	_gui.led.classList.remove("gui__led--active");
 	_gui.ledLevel.classList.remove("gui__led--level1", "gui__led--level2", "gui__led--level3", "gui__led--level4", "gui__led--level5");
 	if (!_data.gameOn) return;
@@ -93,29 +106,45 @@ _gui.start.addEventListener("click", () => {
 });
 
 _gui.level.addEventListener("click", () => {
+	
 	if (!_data.gameOn) return;
 	_data.effects[0].play();
-	
+
+
+	if (countLevel > 4)
+	{
+		_data.level = _gui.ledLevel.classList.remove("gui__led--level5");
+		countLevel = 0;
+		swithLevel();
+	}
+	else{		
+		swithLevel();
+	}
+
+});
+
+const swithLevel = () => {
 	switch (countLevel) {
 		case 0:
 			selectedLevel = _levels.ease;
 			timerLevel = 10000;
 			alert("level 1 - Ease - let's take it easy on you this time baby");
-			_data.level = _gui.ledLevel.classList.toggle("gui__led--level1");
+			_data.level = _gui.ledLevel.classList.add("gui__led--level1");
 			++countLevel
 			break;
 		case 1:
 			selectedLevel = _levels.normal;
 			timerLevel = 8000;
-			_data.level = _gui.ledLevel.classList.toggle("gui__led--level2");
+			_data.level = _gui.ledLevel.classList.remove("gui__led--level1");
+			_data.level = _gui.ledLevel.classList.add("gui__led--level2");
 			alert("level 2 - Normal - this challenge is not for crying babies");
 			++countLevel
-
 			break;
 		case 2:
 			selectedLevel = _levels.hard;
 			timerLevel = 6000;
-			_data.level = _gui.ledLevel.classList.toggle("gui__led--level3");
+			_data.level = _gui.ledLevel.classList.remove("gui__led--level2");
+			_data.level = _gui.ledLevel.classList.add("gui__led--level3");
 
 			alert("level 3 - Hard - are you really human !!!");
 			++countLevel
@@ -123,7 +152,8 @@ _gui.level.addEventListener("click", () => {
 		case 3:
 			selectedLevel = _levels.veryhard;
 			timerLevel = 5000;
-			_data.level = _gui.ledLevel.classList.toggle("gui__led--level4");
+			_data.level = _gui.ledLevel.classList.remove("gui__led--level3");
+			_data.level = _gui.ledLevel.classList.add("gui__led--level4");
 
 			alert("level 4 - Very Hard - Only the best can survive here!");
 			++countLevel
@@ -131,15 +161,13 @@ _gui.level.addEventListener("click", () => {
 		case 4:
 			selectedLevel = _levels.terminador;
 			timerLevel = 4000;
-			_data.level = _gui.ledLevel.classList.toggle("gui__led--level5");
+			_data.level = _gui.ledLevel.classList.remove("gui__led--level4");
+			_data.level = _gui.ledLevel.classList.add("gui__led--level5");
 			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
 			++countLevel
 			break;
 	}
-
-	if (countLevel > 4) countLevel = 0;	
-
-});
+}
 
 /*** FUN PAD LISTENER ***/
 const padListener = (e) => {
@@ -149,29 +177,31 @@ const padListener = (e) => {
 	_gui.pads.forEach((pad, key) => {
 		if (pad === e.target)
 			soundId = key;
-	} )
+	})
 
 	e.target.classList.add("game__pad--active");
 
 	_data.sounds[soundId].play();
 	_data.playerSequence.push(soundId);
 
-	e.target.classList.remove("game_pad--active");
 
-	const currentMove = _data.playerSequence.length - 1;
+	setTimeout(() => {
+		e.target.classList.remove("game_pad--active");
 
-	if (_data.playerSequence[currentMove] !== _data.gameSequence[currentMove])
-	{
-		_data.playerCanPlay = false;
-		disablePads();
-		resetOrPlayAgain();
-	}
-	else if (currentMove === _data.gameSequence.length - 1) {
-		newColor();
-		playSequence();
-	}
+		const currentMove = _data.playerSequence.length - 1;
 
+		if (_data.playerSequence[currentMove] !== _data.gameSequence[currentMove]) {
+			_data.playerCanPlay = false;
+			disablePads();
+			resetOrPlayAgain();
+		}
+		else if (currentMove === _data.gameSequence.length - 1) {
+			newColor();
+			playSequence();
+		}
+		waitForPlayerClick();
 
+	}, 250);
 }
 
 _gui.pads.forEach(pad => {
@@ -180,11 +210,13 @@ _gui.pads.forEach(pad => {
 
 /*** FUN START GAME ***/
 const startGame = () => {
+
 	alert("INDRODUÇÃO:\nAliens conquistadores de galaxias, vindos de uma Galaxia distante\nImplantaram no nucleo de nosso planeta um dispositivo chamado GENIUS O Conquistador de Mundos!\nSe ele não for desativado não so nosso planeta, mas toda galaxia estara perdida!")
 	alert("REGRAS:\nO GENIUS emite 4 tipos diferentes de ondas sonoras e uma luz nunca vista antes\nPara desativar o dispositivo Alien, basta repetir exatamente a mesma sequencia que o dispositivo\nfaz para iniciar a terraplanagem\nAcreditamos que isso deve causar um curto na programação do GENIUS e após 10 ou 12 vezes ele deve desligar!")
 	alert("INICIO DA MISSÃO:\nContamos com você para esta missão!\nah, e mais uma coisa, não importa o que aconteça la embaixo, não ative o modo Strict");
+	alert("DICAS IMPORTANTES:\nGenius emite sons e audios curtos\nAjuste o volume do seu dispositivo para uma altura agradavel");
 
-
+	//_data.stages[0].play();
 
 	blink("--", () => {
 		newColor();
@@ -203,6 +235,8 @@ const setScore = () => {
 /*** FUN NEW COLOR ***/
 const newColor = () => {
 	if (_data.score === 9) {
+		_data.stages[1].play();
+
 		alert("NÃO, NÃO ... IMPOSSÍVEL.\n COMO UM SER DE RAÇA TÃO INFERIOR PODE SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
 		alert("Parabéns, você salvou a Terra e toda a Galáxia.!");
 		alert("Após Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
@@ -226,6 +260,7 @@ const playSequence = () => {
 	_data.playerSequence = [];
 	_data.playerCanPlay = false;
 
+	changePadCursor("auto");
 	/*	 setInterval: 
 			Executa uma função dada 
 			dentro do tempo apresentado.
@@ -240,11 +275,11 @@ const playSequence = () => {
 		}
 
 		if (padOn) {
-
 			if (counter === _data.gameSequence.length) {
 				clearInterval(interval);
 				disablePads();
 				waitForPlayerClick();
+				changePadCursor("pointer")
 
 				_data.playerCanPlay = true;
 				return;
@@ -301,7 +336,7 @@ const waitForPlayerClick = () => {
 	_data.timeout = setTimeout(() => {
 		if (!_data.playerCanPlay)
 			return;
-		
+
 		disablePads();
 		alert("You are too slow human!")
 		resetOrPlayAgain();
@@ -329,7 +364,9 @@ const resetOrPlayAgain = () => {
 
 /*** FUN CHANCGE PAD CURSOR ***/
 const changePadCursor = (cursorType) => {
-
+	_gui.pads.forEach(pad => {
+		pad.style.cursor = cursorType;
+	})
 }
 /*** FUN DISABLE PADS ***/
 const disablePads = () => {

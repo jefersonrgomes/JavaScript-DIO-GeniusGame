@@ -387,3 +387,9 @@ footer {
 	margin-right: 3rem;
 	color: #222;
 }
+
+@media (max-width: 600px) {
+	html {
+		font-size: 40%;
+	}
+}
