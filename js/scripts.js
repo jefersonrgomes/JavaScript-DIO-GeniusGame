@@ -96,7 +96,8 @@ _gui.strict.addEventListener("click", () => {
 	_data.strict = _gui.led.classList.toggle("gui__led--active");
 	_data.effects[1].play();
 	counter = 0;
-	alert("DEATH MODE ACTIVATED - FROM NOW ON YOU CAN'T MISS HUMAN! UHAHAHA YOU GALAXI IS OUR!");
+	alert("*** 🚨 STRICT MODE ATIVADO 🚨 ***\n--- --- ---\nAo ativar o STRICT MODE você tera apenas uma unica chance de descriptografar a sequencia do GENIUS\nSe falhar sera FIM DE JOGO!");
+	alert("🛸 ALIENS: \nMODO MORTE SUBITA ATIVADO\nA PARTIR DE AGORA VOCÊ NÃO PODE ERRAR NENHUMA SEQUENCIA HUMANO!\nUuHAHaaAaAhHA VOCÊ GALAXI É NOSSO");
 });
 
 _gui.start.addEventListener("click", () => {
@@ -108,7 +109,7 @@ _gui.start.addEventListener("click", () => {
 _gui.level.addEventListener("click", () => {
 	
 	if (!_data.gameOn) return;
-	_data.effects[0].play();
+	_data.effects[1].play();
 
 
 	if (countLevel > 4)
@@ -128,7 +129,9 @@ const swithLevel = () => {
 		case 0:
 			selectedLevel = _levels.ease;
 			timerLevel = 10000;
-			alert("level 1 - Ease - let's take it easy on you this time baby");
+			alert("*** LEVEL 1 - FACIL ***");
+			alert("🛸 ALIENS 🛸\nVamos pegar leve com você desta vez novato");
+
 			_data.level = _gui.ledLevel.classList.add("gui__led--level1");
 			++countLevel
 			break;
@@ -137,7 +140,8 @@ const swithLevel = () => {
 			timerLevel = 8000;
 			_data.level = _gui.ledLevel.classList.remove("gui__led--level1");
 			_data.level = _gui.ledLevel.classList.add("gui__led--level2");
-			alert("level 2 - Normal - this challenge is not for crying babies");
+			alert("*** LEVEL 2 - NORMAL ***");
+			alert("🛸 ALIENS 🛸\nEsse desafio não é para bebês choroes, que tal desistir e voltar para o colinho da mamae!");
 			++countLevel
 			break;
 		case 2:
@@ -145,8 +149,8 @@ const swithLevel = () => {
 			timerLevel = 6000;
 			_data.level = _gui.ledLevel.classList.remove("gui__led--level2");
 			_data.level = _gui.ledLevel.classList.add("gui__led--level3");
-
-			alert("level 3 - Hard - are you really human !!!");
+			alert("*** LEVEL 3 - HARD  ***");
+			alert("🛸 ALIENS 🛸\n👀 Você é ousado ah! ... 👽 Gostei disso.\nVoce esta realmente pronto para este nivel Humano?");
 			++countLevel
 			break;
 		case 3:
@@ -154,8 +158,8 @@ const swithLevel = () => {
 			timerLevel = 5000;
 			_data.level = _gui.ledLevel.classList.remove("gui__led--level3");
 			_data.level = _gui.ledLevel.classList.add("gui__led--level4");
-
-			alert("level 4 - Very Hard - Only the best can survive here!");
+			alert("*** LEVEL 4 - VERY HARD  ***");
+			alert("🛸 ALIENS 🛸\n👀👀👀 Você é louco cara ... espera, você é louco mesmo não é?");
 			++countLevel
 			break;
 		case 4:
@@ -163,7 +167,8 @@ const swithLevel = () => {
 			timerLevel = 4000;
 			_data.level = _gui.ledLevel.classList.remove("gui__led--level4");
 			_data.level = _gui.ledLevel.classList.add("gui__led--level5");
-			alert("Ultimate level - Terminator - Survive if you can, the existence of your galaxy depends on you!");
+			alert("*** LEVEL 5 - ULTIMATE ***");
+			alert("🛸 ALIENS 🛸\nSobreviva se você puder!");
 			++countLevel
 			break;
 	}
@@ -237,7 +242,7 @@ const newColor = () => {
 	if (_data.score === 9) {
 		_data.stages[1].play();
 
-		alert("NÃO, NÃO ... IMPOSSÍVEL.\n COMO UM SER DE RAÇA TÃO INFERIOR PODE SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
+		alert("NÃO, NÃO ... IMPOSSÍVEL.\n COMO SERES TÃO INFERIORES PODEM SUPERAR NOSSA TECNOLOGIA!!\nNÃO ACABOU HUMANO, EM BREVE VOLTAREMOS PARA REIVINDICAR SUA GALÁXIA!")
 		alert("Parabéns, você salvou a Terra e toda a Galáxia.!");
 		alert("Após Humilhante derrota.\n os Aliens retornaram para sua galáxia, com a promessa vingança, e de melhorar seu GÊNIUS O conquistador de mundos.\nE voltarem para dominar a Terra e toda nossa galáxia novamente!")
 		alert("Obrigado por jogar.\nvolte sempre que quiser se divertir.\n Clique em Iniciar para iniciar um novo jogo.");
@@ -338,7 +343,7 @@ const waitForPlayerClick = () => {
 			return;
 
 		disablePads();
-		alert("You are too slow human!")
+		alert("🛸 ALIENS: VOCE É MUITO LERDO HUMANO! JAMAIS CONSEGUIRA DESATIVAR O GENIUS!")
 		resetOrPlayAgain();
 	}, timerLevel)
 }
@@ -348,10 +353,17 @@ const resetOrPlayAgain = () => {
 	_data.playerCanPlay = false;
 
 	if (_data.strict) {
-		blink("!!", () => {
+		blink("##", () => {
 			_data.score = 0;
 			_data.gameSequence = [];
-			startGame();
+			alert("🛸 ALIENS:\nVOCE PERDEU HUMANO!\nSUA TENTATIVA DE CORROMPER O GENIUS FALHOU\nO GENIUS FOI ATIVADO COMPLETAMENTE\nSEU PLANETA  E SUA GALAXIA AGORA NOS É NOSSO\nREDUZA-SE A SUA INSIGNIFICANCIA\nE VA AGORA LIMPAR A JAULA DOS BLORGS\nE TERA SORTE SE NÃO FOR DEVORADO POR ELES HAHAHAHAHA!!!");
+			alert("*** FIM DE JOGO ***\n--- --- ---\nVocê foi ambicioso e quiz arriscar tudo ao acionar o STRICT Mode.\n\nGAME OVER\n\nPRESS START FOR NEW GAME");
+
+			_data.strict = false;
+			_gui.led.classList.remove("gui__led--active");
+
+			//			startGame();
+			blink('--');
 		})
 	}
 	else {
