@@ -84,8 +84,6 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	border-bottom: 1rem solid #27284C;
-	border-right: 1rem solid #27284C;
 }
 
 .header__logo--container {
@@ -133,7 +131,6 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	border-bottom: 1rem solid #27284C;
-	border-right: 1rem solid #27284C;
 	box-shadow: 0 .5rem 1.2rem #AC4D76;
 }
 
